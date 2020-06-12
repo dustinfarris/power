@@ -1,0 +1,17 @@
+{
+    "name": "power",
+    "devDependencies": {
+        "@types/node": "^10.0.0",
+        "prettier": "^2.0.5"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^2.0.0",
+        "@pulumi/aws": "^2.0.0",
+        "@pulumi/awsx": "^0.20.0"
+    },
+    "prettier": {
+        "trailingComma": "all",
+        "tabWidth": 4,
+        "endOfLine": "lf"
+    }
+}
