@@ -3,6 +3,7 @@ import * as pulumi from "@pulumi/pulumi";
 
 import * as sfn from "../sfn";
 import * as getCompletedTasks from "../jobs/get-completed-tasks";
+import * as getSectionTasks from "../jobs/get-section-tasks";
 
 /**
  * Parameters:
@@ -13,7 +14,10 @@ import * as getCompletedTasks from "../jobs/get-completed-tasks";
   "todoistProjectId": "2198536455"
 }
  */
-const definition = ([getCompletedTasksLambdaArn]: string[]) => ({
+const definition = ([
+    getCompletedTasksLambdaArn,
+    getSectionTasksLambdaArn,
+]: string[]) => ({
     StartAt: "GetCompletedTasks",
     States: {
         GetCompletedTasks: {
@@ -22,6 +26,16 @@ const definition = ([getCompletedTasksLambdaArn]: string[]) => ({
             Parameters: {
                 "todoistProjectId.$": "$.todoistProjectId",
             },
+            ResultPath: "$.completed",
+            Next: "GetCurrentTasks",
+        },
+        GetCurrentTasks: {
+            Type: "Task",
+            Resource: getSectionTasksLambdaArn,
+            Parameters: {
+                "todoistProjectId.$": "$.todoistProjectId",
+            },
+            ResultPath: "$.current",
             End: true,
         },
     },
@@ -30,7 +44,7 @@ const definition = ([getCompletedTasksLambdaArn]: string[]) => ({
 export default new aws.sfn.StateMachine("prepare-standup-note", {
     roleArn: sfn.role.arn,
     definition: pulumi
-        .all([getCompletedTasks.lambda.arn])
+        .all([getCompletedTasks.lambda.arn, getSectionTasks.lambda.arn])
         .apply(definition)
         .apply(JSON.stringify),
 });

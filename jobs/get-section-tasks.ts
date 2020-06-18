@@ -5,22 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 const config = new pulumi.Config();
 
 export const lambda = new aws.lambda.CallbackFunction(
-    "jobs-get-completed-tasks",
+    "jobs-get-section-tasks",
     {
         callback: async ({
             todoistProjectId,
         }: {
             todoistProjectId: string;
         }) => {
-            const since = "2007-4-29T10:13";
             const response = await axios.get(
-                `https://api.todoist.com/sync/v8/completed/get_all?project_id=${todoistProjectId}&since=${since}`,
+                `https://api.todoist.com/sync/v8/projects/get_data?project_id=${todoistProjectId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${process.env.todoistToken}`,
                     },
                 },
             );
+            console.log("section tasks", response.data);
             return response.data.items;
         },
         environment: {
