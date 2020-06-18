@@ -1,0 +1,1574 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2020-06-18T08:41:34.666794-07:00",
+            "magic": "e40dbc2dac479e18b8e1452207e6f75742cda9f89e2282dbe01737c9ad70bae9",
+            "version": "v2.4.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "dustinfarris",
+                "project": "power",
+                "stack": "prod"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "outputs": {
+                    "url": "https://t83iy5rfp6.execute-api.us-west-2.amazonaws.com/stage/"
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:apigateway:x:API::api",
+                "custom": false,
+                "type": "aws:apigateway:x:API",
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod"
+            },
+            {
+                "urn": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0",
+                "custom": true,
+                "id": "499fef72-f969-47d9-a8cb-912fe5970e25",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "accessKey": "AKIASOICCNKMUXJF5HGF",
+                    "region": "us-west-2",
+                    "secretKey": "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",
+                    "version": "2.9.0"
+                },
+                "outputs": {
+                    "accessKey": "AKIASOICCNKMUXJF5HGF",
+                    "region": "us-west-2",
+                    "secretKey": "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",
+                    "version": "2.9.0"
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/role:Role::update-task",
+                "custom": true,
+                "id": "update-task-a73d850",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Effect\":\"Allow\",\"Sid\":\"\"}]}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "update-task-a73d850",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::168044948121:role/update-task-a73d850",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2020-06-15T16:56:22Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "update-task-a73d850",
+                    "maxSessionDuration": 3600,
+                    "name": "update-task-a73d850",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROASOICCNKMZOW6RVGIF"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/role:Role::lambdaRole",
+                "custom": true,
+                "id": "lambdaRole-14e04d3",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Sid\":\"AllowAssumeRole\"}],\"Version\":\"2012-10-17\"}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "lambdaRole-14e04d3",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::168044948121:role/lambdaRole-14e04d3",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AllowAssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2020-06-13T14:32:14Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "lambdaRole-14e04d3",
+                    "maxSessionDuration": 3600,
+                    "name": "lambdaRole-14e04d3",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROASOICCNKMVCNLIFGLV"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role",
+                "custom": true,
+                "id": "api-method-handler-role-1915e63",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Sid\":\"AllowAssumeRole\"}],\"Version\":\"2012-10-17\"}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "api-method-handler-role-1915e63",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::168044948121:role/api-method-handler-role-1915e63",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AllowAssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2020-06-13T14:56:38Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "api-method-handler-role-1915e63",
+                    "maxSessionDuration": 3600,
+                    "name": "api-method-handler-role-1915e63",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROASOICCNKM2GWNHOZL5"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:dynamodb/table:Table::projects",
+                "custom": true,
+                "id": "projects-7db6a47",
+                "type": "aws:dynamodb/table:Table",
+                "inputs": {
+                    "__defaults": ["name"],
+                    "attributes": [
+                        {
+                            "__defaults": [],
+                            "name": "TodoistProjectId",
+                            "type": "S"
+                        }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "hashKey": "TodoistProjectId",
+                    "name": "projects-7db6a47"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000,\"update\":3600000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:dynamodb:us-west-2:168044948121:table/projects-7db6a47",
+                    "attributes": [
+                        {
+                            "name": "TodoistProjectId",
+                            "type": "S"
+                        }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [],
+                    "hashKey": "TodoistProjectId",
+                    "id": "projects-7db6a47",
+                    "localSecondaryIndexes": [],
+                    "name": "projects-7db6a47",
+                    "pointInTimeRecovery": {
+                        "enabled": false
+                    },
+                    "readCapacity": 0,
+                    "replicas": [],
+                    "serverSideEncryption": null,
+                    "streamArn": "",
+                    "streamEnabled": false,
+                    "streamLabel": "",
+                    "streamViewType": "",
+                    "tags": {},
+                    "ttl": {
+                        "attributeName": "",
+                        "enabled": false
+                    },
+                    "writeCapacity": 0
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "attributes": null,
+                    "billingMode": null,
+                    "hashKey": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:dynamodb/table:Table::tasks",
+                "custom": true,
+                "id": "tasks-f17b91d",
+                "type": "aws:dynamodb/table:Table",
+                "inputs": {
+                    "__defaults": ["name"],
+                    "attributes": [
+                        {
+                            "__defaults": [],
+                            "name": "TodoistTaskId",
+                            "type": "S"
+                        },
+                        {
+                            "__defaults": [],
+                            "name": "EvernoteNoteGuid",
+                            "type": "S"
+                        }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "hashKey": "TodoistTaskId",
+                    "name": "tasks-f17b91d",
+                    "rangeKey": "EvernoteNoteGuid"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000,\"update\":3600000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:dynamodb:us-west-2:168044948121:table/tasks-f17b91d",
+                    "attributes": [
+                        {
+                            "name": "TodoistTaskId",
+                            "type": "S"
+                        },
+                        {
+                            "name": "EvernoteNoteGuid",
+                            "type": "S"
+                        }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "globalSecondaryIndexes": [],
+                    "hashKey": "TodoistTaskId",
+                    "id": "tasks-f17b91d",
+                    "localSecondaryIndexes": [],
+                    "name": "tasks-f17b91d",
+                    "pointInTimeRecovery": {
+                        "enabled": false
+                    },
+                    "rangeKey": "EvernoteNoteGuid",
+                    "readCapacity": 0,
+                    "replicas": [],
+                    "serverSideEncryption": null,
+                    "streamArn": "",
+                    "streamEnabled": false,
+                    "streamLabel": "",
+                    "streamViewType": "",
+                    "tags": {},
+                    "ttl": {
+                        "attributeName": "",
+                        "enabled": false
+                    },
+                    "writeCapacity": 0
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "attributes": null,
+                    "billingMode": null,
+                    "hashKey": null,
+                    "rangeKey": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole",
+                "custom": true,
+                "id": "sfnRole-1374004",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"states.us-west-2.amazonaws.com\"},\"Sid\":\"AllowAssumeRole\"}],\"Version\":\"2012-10-17\"}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "sfnRole-1374004",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::168044948121:role/sfnRole-1374004",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AllowAssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"states.us-west-2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2020-06-13T14:32:14Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "sfnRole-1374004",
+                    "maxSessionDuration": 3600,
+                    "name": "sfnRole-1374004",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROASOICCNKM5N5FAYUXY"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicyAttachment:RolePolicyAttachment::api-role-sfn-policy",
+                "custom": true,
+                "id": "api-method-handler-role-1915e63-20200613145646369800000002",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess",
+                    "role": "api-method-handler-role-1915e63"
+                },
+                "outputs": {
+                    "id": "api-method-handler-role-1915e63-20200613145646369800000002",
+                    "policyArn": "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess",
+                    "role": "api-method-handler-role-1915e63"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicyAttachment:RolePolicyAttachment::update-task-32be53a2",
+                "custom": true,
+                "id": "update-task-a73d850-20200615165624475500000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+                    "role": "update-task-a73d850"
+                },
+                "outputs": {
+                    "id": "update-task-a73d850-20200615165624475500000001",
+                    "policyArn": "arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+                    "role": "update-task-a73d850"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::update-task"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::update-task"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicy:RolePolicy::lambdaRolePolicy",
+                "custom": true,
+                "id": "lambdaRole-14e04d3:lambdaRolePolicy-a98503f",
+                "type": "aws:iam/rolePolicy:RolePolicy",
+                "inputs": {
+                    "__defaults": ["name"],
+                    "name": "lambdaRolePolicy-a98503f",
+                    "policy": "{\"Statement\":[{\"Action\":[\"logs:CreateLogGroup\",\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:logs:*:*:*\"}],\"Version\":\"2012-10-17\"}",
+                    "role": "lambdaRole-14e04d3"
+                },
+                "outputs": {
+                    "id": "lambdaRole-14e04d3:lambdaRolePolicy-a98503f",
+                    "name": "lambdaRolePolicy-a98503f",
+                    "policy": "{\"Statement\":[{\"Action\":[\"logs:CreateLogGroup\",\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:logs:*:*:*\"}],\"Version\":\"2012-10-17\"}",
+                    "role": "lambdaRole-14e04d3"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::lambdaRole"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policy": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::lambdaRole"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicyAttachment:RolePolicyAttachment::api-role-lambda-policy",
+                "custom": true,
+                "id": "api-method-handler-role-1915e63-20200613145645469500000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+                    "role": "api-method-handler-role-1915e63"
+                },
+                "outputs": {
+                    "id": "api-method-handler-role-1915e63-20200613145645469500000001",
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+                    "role": "api-method-handler-role-1915e63"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicyAttachment:RolePolicyAttachment::sfn-role-dynamo-policy",
+                "custom": true,
+                "id": "sfnRole-1374004-20200614212920395200000002",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+                    "role": "sfnRole-1374004"
+                },
+                "outputs": {
+                    "id": "sfnRole-1374004-20200614212920395200000002",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+                    "role": "sfnRole-1374004"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:iam/rolePolicyAttachment:RolePolicyAttachment::sfn-role-lambda-policy",
+                "custom": true,
+                "id": "sfnRole-1374004-20200614212920391000000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaRole",
+                    "role": "sfnRole-1374004"
+                },
+                "outputs": {
+                    "id": "sfnRole-1374004-20200614212920391000000001",
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaRole",
+                    "role": "sfnRole-1374004"
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:lambda/function:Function::update-task",
+                "custom": true,
+                "id": "update-task-6f74e15",
+                "type": "aws:lambda/function:Function",
+                "inputs": {
+                    "__defaults": [
+                        "memorySize",
+                        "name",
+                        "publish",
+                        "reservedConcurrentExecutions"
+                    ],
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "1cfe6f252f68a786b16da945929133bbc08ad69741c23b4fc9935e3116e92cfd",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, axios_1: require(\"axios/index.js\"), evernoteUserId: \"48611447\" }) {\n\nreturn ({ task, note }) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        const response = yield axios_1.default.post(`https://api.todoist.com/rest/v1/tasks/${task.id}`, {\n            content: `[${task.content}](evernote:///view/${evernoteUserId}/s200/${note.guid}/${note.guid}/)`,\n        }, {\n            headers: {\n                Authorization: `Bearer ${process.env.todoistToken}`,\n            },\n        });\n        console.log(\"todoist response\", response);\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "d1961ccae7f2a36a571b38bdbea93fc14315b7a00c1a28ecddbb5d2b450582e1"
+                    },
+                    "environment": {
+                        "__defaults": [],
+                        "variables": {
+                            "__defaults": [],
+                            "todoistToken": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "AAABAMXZGcu5XSIQ1qOxwtqns7FcKUVULvjy6MXQVGMEggS50gNLFjQnDdveaV9vl3CjMsxLYf7VESq5BuiMTrZLpPLSlaRv+T8="
+                            }
+                        }
+                    },
+                    "handler": "__index.handler",
+                    "memorySize": 128,
+                    "name": "update-task-6f74e15",
+                    "publish": false,
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/update-task-a73d850",
+                    "runtime": "nodejs12.x",
+                    "timeout": 180
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000}}",
+                    "arn": "arn:aws:lambda:us-west-2:168044948121:function:update-task-6f74e15",
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "1cfe6f252f68a786b16da945929133bbc08ad69741c23b4fc9935e3116e92cfd",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, axios_1: require(\"axios/index.js\"), evernoteUserId: \"48611447\" }) {\n\nreturn ({ task, note }) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        const response = yield axios_1.default.post(`https://api.todoist.com/rest/v1/tasks/${task.id}`, {\n            content: `[${task.content}](evernote:///view/${evernoteUserId}/s200/${note.guid}/${note.guid}/)`,\n        }, {\n            headers: {\n                Authorization: `Bearer ${process.env.todoistToken}`,\n            },\n        });\n        console.log(\"todoist response\", response);\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "d1961ccae7f2a36a571b38bdbea93fc14315b7a00c1a28ecddbb5d2b450582e1"
+                    },
+                    "deadLetterConfig": null,
+                    "description": "",
+                    "environment": {
+                        "variables": {
+                            "todoistToken": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "AAABALOx0xzuJaCJhyNMFBoC0bNXxJ1QwrCB37cd+kONwsHl4RsPueoyjPqCpWwyxc9Om3Sw63TOAptQlnDdwj5ic5dniLbOORs="
+                            }
+                        }
+                    },
+                    "handler": "__index.handler",
+                    "id": "update-task-6f74e15",
+                    "invokeArn": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:168044948121:function:update-task-6f74e15/invocations",
+                    "kmsKeyArn": "",
+                    "lastModified": "2020-06-18T14:50:39.101+0000",
+                    "layers": [],
+                    "memorySize": 128,
+                    "name": "update-task-6f74e15",
+                    "publish": false,
+                    "qualifiedArn": "arn:aws:lambda:us-west-2:168044948121:function:update-task-6f74e15:$LATEST",
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/update-task-a73d850",
+                    "runtime": "nodejs12.x",
+                    "sourceCodeHash": "qdm30+Tb52PLi0pVnPmKMkEX/uIjrWYAE3McKBh9kF4=",
+                    "sourceCodeSize": 633352,
+                    "tags": {},
+                    "timeout": 180,
+                    "tracingConfig": {
+                        "mode": "PassThrough"
+                    },
+                    "version": "$LATEST",
+                    "vpcConfig": null
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::update-task"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "code": null,
+                    "environment": null,
+                    "handler": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::update-task"
+                    ],
+                    "runtime": null,
+                    "timeout": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:lambda/function:Function::create-note",
+                "custom": true,
+                "id": "create-note-73e171a",
+                "type": "aws:lambda/function:Function",
+                "inputs": {
+                    "__defaults": [
+                        "memorySize",
+                        "name",
+                        "publish",
+                        "reservedConcurrentExecutions"
+                    ],
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "5b4682e5969f620de1f8ad5786bbb876e54d0a89bbfa8ecc42aad3fc0cad5482",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2() {\n  return (function() {\n    with({  }) {\n\nreturn (content = \"\") =\u003e `\u003c?xml version=\"1.0\" encoding=\"UTF-8\"?\u003e\n\u003c!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\"\u003e\n\u003cen-note\u003e\n${content}\n\u003c/en-note\u003e\n`;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, evernote: require(\"evernote/lib/index.js\"), makeNoteContent: __f2 }) {\n\nreturn (todoistTask) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        const client = new evernote.Client({\n            token: process.env.evernoteToken,\n            sandbox: false,\n        });\n        console.log(\"authenticated with evernote\");\n        const userStore = client.getUserStore();\n        const noteStore = client.getNoteStore();\n        const note = new evernote.Types.Note();\n        note.title = todoistTask.content;\n        note.content = makeNoteContent();\n        note.attributes = new evernote.Types.NoteAttributes();\n        note.attributes.sourceApplication = \"Todoist\";\n        note.attributes.sourceURL = todoistTask.url;\n        console.log(\"creating note\", note.content);\n        const response = yield noteStore.createNote(note);\n        console.log(\"created note\", response);\n        return {\n            noteGuid: response.guid,\n        };\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "20a25883534a737113ab215767e2a10a19a961ac63748befa5c561db6b5199a8"
+                    },
+                    "environment": {
+                        "__defaults": [],
+                        "variables": {
+                            "__defaults": [],
+                            "evernoteToken": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "AAABAOeACbWhYCYmW+bx9o7cdfCRvRQfd1k5iBokAWBI1euFRu7Ia/GESCRSLcGPNDh1K9bdunOEUUxHfps0/hb3EeJGXpTY4+oeFmrVnzU8mX/TROZBjnQczCvNPVJoCS0f6nysLNPz3wLD6qczfJtY31oUDBE5izsx82JyYfMpw+awcnUxXT8="
+                            }
+                        }
+                    },
+                    "handler": "__index.handler",
+                    "memorySize": 128,
+                    "name": "create-note-73e171a",
+                    "publish": false,
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/lambdaRole-14e04d3",
+                    "runtime": "nodejs12.x",
+                    "timeout": 180
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000}}",
+                    "arn": "arn:aws:lambda:us-west-2:168044948121:function:create-note-73e171a",
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "5b4682e5969f620de1f8ad5786bbb876e54d0a89bbfa8ecc42aad3fc0cad5482",
+                                "text": "exports.handler = __f0;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2() {\n  return (function() {\n    with({  }) {\n\nreturn (content = \"\") =\u003e `\u003c?xml version=\"1.0\" encoding=\"UTF-8\"?\u003e\n\u003c!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml2.dtd\"\u003e\n\u003cen-note\u003e\n${content}\n\u003c/en-note\u003e\n`;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, evernote: require(\"evernote/lib/index.js\"), makeNoteContent: __f2 }) {\n\nreturn (todoistTask) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        const client = new evernote.Client({\n            token: process.env.evernoteToken,\n            sandbox: false,\n        });\n        console.log(\"authenticated with evernote\");\n        const userStore = client.getUserStore();\n        const noteStore = client.getNoteStore();\n        const note = new evernote.Types.Note();\n        note.title = todoistTask.content;\n        note.content = makeNoteContent();\n        note.attributes = new evernote.Types.NoteAttributes();\n        note.attributes.sourceApplication = \"Todoist\";\n        note.attributes.sourceURL = todoistTask.url;\n        console.log(\"creating note\", note.content);\n        const response = yield noteStore.createNote(note);\n        console.log(\"created note\", response);\n        return {\n            noteGuid: response.guid,\n        };\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "20a25883534a737113ab215767e2a10a19a961ac63748befa5c561db6b5199a8"
+                    },
+                    "deadLetterConfig": null,
+                    "description": "",
+                    "environment": {
+                        "variables": {
+                            "evernoteToken": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "AAABAF2P+XMInO23o/7ZcEiOirVjvA4/Jgafei46NM8Yn21TfFrIBC5bKch0A5wRhZ5aFs0zdEo8YT2LW2AooTNZ6/1gvKNfs/mq8heajSGMYUYWs/2HpuR+gACg11jnKBT0IstY/Is4ksCjQIFws7o+TRcSp9D1g1+0SA/QCl9aat2Aqu3j1Jc="
+                            }
+                        }
+                    },
+                    "handler": "__index.handler",
+                    "id": "create-note-73e171a",
+                    "invokeArn": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:168044948121:function:create-note-73e171a/invocations",
+                    "kmsKeyArn": "",
+                    "lastModified": "2020-06-18T15:06:46.424+0000",
+                    "layers": [],
+                    "memorySize": 128,
+                    "name": "create-note-73e171a",
+                    "publish": false,
+                    "qualifiedArn": "arn:aws:lambda:us-west-2:168044948121:function:create-note-73e171a:$LATEST",
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/lambdaRole-14e04d3",
+                    "runtime": "nodejs12.x",
+                    "sourceCodeHash": "LdJyq3ysTsgk7tCzHmbSIa6jdoizSMsEhGCwrMoNHfA=",
+                    "sourceCodeSize": 633533,
+                    "tags": {},
+                    "timeout": 180,
+                    "tracingConfig": {
+                        "mode": "PassThrough"
+                    },
+                    "version": "$LATEST",
+                    "vpcConfig": null
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::lambdaRole"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "code": null,
+                    "environment": null,
+                    "handler": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::lambdaRole"
+                    ],
+                    "runtime": null,
+                    "timeout": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:sfn/stateMachine:StateMachine::handle-todoist-event",
+                "custom": true,
+                "id": "arn:aws:states:us-west-2:168044948121:stateMachine:handle-todoist-event-9f5d147",
+                "type": "aws:sfn/stateMachine:StateMachine",
+                "inputs": {
+                    "__defaults": ["name"],
+                    "definition": "{\"StartAt\":\"InspectEvent\",\"States\":{\"InspectEvent\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.event_name\",\"StringEquals\":\"item:added\",\"Next\":\"CreateNote\"}],\"Default\":\"UnknownEvent\"},\"CreateNote\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-west-2:168044948121:function:create-note-73e171a\",\"Parameters\":{\"id.$\":\"$.event_data.id\",\"content.$\":\"$.event_data.content\",\"url.$\":\"$.event_data.url\"},\"ResultPath\":\"$.evernote\",\"Next\":\"UpdateTask\"},\"UpdateTask\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-west-2:168044948121:function:update-task-6f74e15\",\"Parameters\":{\"task\":{\"id.$\":\"$.event_data.id\",\"content.$\":\"$.event_data.content\"},\"note\":{\"guid.$\":\"$.evernote.noteGuid\"}},\"Next\":\"Save\"},\"Save\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:states:::dynamodb:putItem\",\"Parameters\":{\"TableName\":\"tasks-f17b91d\",\"Item\":{\"TodoistTaskId\":{\"S.$\":\"$.event_data.id\"},\"EvernoteNoteGuid\":{\"S.$\":\"$.evernote.noteGuid\"}}},\"End\":true},\"UnknownEvent\":{\"Type\":\"Succeed\"}}}",
+                    "name": "handle-todoist-event-9f5d147",
+                    "roleArn": "arn:aws:iam::168044948121:role/sfnRole-1374004"
+                },
+                "outputs": {
+                    "creationDate": "2020-06-15T12:24:24Z",
+                    "definition": "{\"StartAt\":\"InspectEvent\",\"States\":{\"InspectEvent\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.event_name\",\"StringEquals\":\"item:added\",\"Next\":\"CreateNote\"}],\"Default\":\"UnknownEvent\"},\"LookupProject\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:states:::dynamodb:getItem\",\"Parameters\":{}},\"CreateNote\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-west-2:168044948121:function:create-note-73e171a\",\"Parameters\":{\"id.$\":\"$.event_data.id\",\"content.$\":\"$.event_data.content\",\"url.$\":\"$.event_data.url\"},\"ResultPath\":\"$.evernote\",\"Next\":\"UpdateTask\"},\"UpdateTask\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-west-2:168044948121:function:update-task-6f74e15\",\"Parameters\":{\"task\":{\"id.$\":\"$.event_data.id\",\"content.$\":\"$.event_data.content\"},\"note\":{\"guid.$\":\"$.evernote.noteGuid\"}},\"Next\":\"Save\"},\"Save\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:states:::dynamodb:putItem\",\"Parameters\":{\"TableName\":\"tasks-f17b91d\",\"Item\":{\"TodoistTaskId\":{\"S.$\":\"$.event_data.id\"},\"EvernoteNoteGuid\":{\"S.$\":\"$.evernote.noteGuid\"}}},\"End\":true},\"UnknownEvent\":{\"Type\":\"Succeed\"}}}",
+                    "id": "arn:aws:states:us-west-2:168044948121:stateMachine:handle-todoist-event-9f5d147",
+                    "name": "handle-todoist-event-9f5d147",
+                    "roleArn": "arn:aws:iam::168044948121:role/sfnRole-1374004",
+                    "status": "ACTIVE",
+                    "tags": {}
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:lambda/function:Function::create-note",
+                    "urn:pulumi:prod::power::aws:lambda/function:Function::update-task",
+                    "urn:pulumi:prod::power::aws:dynamodb/table:Table::tasks",
+                    "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                ],
+                "initErrors": [
+                    "updating urn:pulumi:prod::power::aws:sfn/stateMachine:StateMachine::handle-todoist-event: InvalidDefinition: Invalid State Machine Definition: 'SCHEMA_VALIDATION_FAILED: This object should have only one of the following fields: [Next, End] at /States/LookupProject, MISSING_TRANSITION_TARGET: State \"LookupProject\" is not reachable. at /States/LookupProject'"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "definition": [
+                        "urn:pulumi:prod::power::aws:lambda/function:Function::create-note",
+                        "urn:pulumi:prod::power::aws:lambda/function:Function::update-task",
+                        "urn:pulumi:prod::power::aws:dynamodb/table:Table::tasks"
+                    ],
+                    "roleArn": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::sfnRole"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event",
+                "custom": true,
+                "id": "receive-todoist-event-e3efa9a",
+                "type": "aws:lambda/function:Function",
+                "inputs": {
+                    "__defaults": [
+                        "memorySize",
+                        "name",
+                        "publish",
+                        "reservedConcurrentExecutions"
+                    ],
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "0bb632170a00f8c3d4dd6dd90e0da39372e0f9b2b9f9d94cad250b1b1038e7f5",
+                                "text": "exports.handler = __f0;\n\nvar __handleTodoistEvent = {};\nvar __handleTodoistEvent_id_proto = {};\n__f2.prototype = __handleTodoistEvent_id_proto;\nObject.defineProperty(__handleTodoistEvent_id_proto, \"constructor\", { configurable: true, writable: true, value: __f2 });\nObject.defineProperty(__handleTodoistEvent_id_proto, \"apply\", { configurable: true, writable: true, value: __f3 });\nObject.defineProperty(__handleTodoistEvent_id_proto, \"get\", { configurable: true, writable: true, value: __f4 });\nvar __handleTodoistEvent_id = Object.create(__handleTodoistEvent_id_proto);\n__handleTodoistEvent_id.value = \"arn:aws:states:us-west-2:168044948121:stateMachine:handle-todoist-event-9f5d147\";\n__handleTodoistEvent.id = __handleTodoistEvent_id;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2(__0) {\n  return (function() {\n    with({  }) {\n\nreturn function /*constructor*/(value) {\n        this.value = value;\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f3(__0) {\n  return (function() {\n    with({  }) {\n\nreturn function /*apply*/(func) {\n        throw new Error(\"'apply' is not allowed from inside a cloud-callback. Use 'get' to retrieve the value of this Output directly.\");\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f4() {\n  return (function() {\n    with({  }) {\n\nreturn function /*get*/() {\n        return this.value;\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, aws_sdk_1: require(\"aws-sdk/lib/aws.js\"), handleTodoistEvent: __handleTodoistEvent }) {\n\nreturn (event) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        var _a;\n        const decoded = Buffer.from((_a = event.body, (_a !== null \u0026\u0026 _a !== void 0 ? _a : \"\")), \"base64\");\n        const raw = JSON.parse(decoded.toString());\n        console.log(\"raw\", raw);\n        // coercing numbers to strings for dynamodb's benefit\n        const data = Object.assign(Object.assign({}, raw), { event_data: Object.assign(Object.assign({}, raw.event_data), { id: raw.event_data.id.toString() }) });\n        console.log(\"data\", data);\n        const sfn = new aws_sdk_1.StepFunctions();\n        const response = yield sfn\n            .startExecution({\n            stateMachineArn: handleTodoistEvent.id.get(),\n            input: JSON.stringify(data),\n        })\n            .promise();\n        console.log(\"sfn response\", response);\n        return {\n            statusCode: 200,\n            body: \"Received.  Thank you.\",\n        };\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "3329d864fab9ed6410383cb26878e1a9567a50a6b27174b148e75cb37fb9176d"
+                    },
+                    "handler": "__index.handler",
+                    "memorySize": 128,
+                    "name": "receive-todoist-event-e3efa9a",
+                    "publish": false,
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/api-method-handler-role-1915e63",
+                    "runtime": "nodejs12.x",
+                    "timeout": 180
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000}}",
+                    "arn": "arn:aws:lambda:us-west-2:168044948121:function:receive-todoist-event-e3efa9a",
+                    "code": {
+                        "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                        "assets": {
+                            "__index.js": {
+                                "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                                "hash": "0bb632170a00f8c3d4dd6dd90e0da39372e0f9b2b9f9d94cad250b1b1038e7f5",
+                                "text": "exports.handler = __f0;\n\nvar __handleTodoistEvent = {};\nvar __handleTodoistEvent_id_proto = {};\n__f2.prototype = __handleTodoistEvent_id_proto;\nObject.defineProperty(__handleTodoistEvent_id_proto, \"constructor\", { configurable: true, writable: true, value: __f2 });\nObject.defineProperty(__handleTodoistEvent_id_proto, \"apply\", { configurable: true, writable: true, value: __f3 });\nObject.defineProperty(__handleTodoistEvent_id_proto, \"get\", { configurable: true, writable: true, value: __f4 });\nvar __handleTodoistEvent_id = Object.create(__handleTodoistEvent_id_proto);\n__handleTodoistEvent_id.value = \"arn:aws:states:us-west-2:168044948121:stateMachine:handle-todoist-event-9f5d147\";\n__handleTodoistEvent.id = __handleTodoistEvent_id;\n\nfunction __f1(__0, __1, __2, __3) {\n  return (function() {\n    with({  }) {\n\nreturn function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2(__0) {\n  return (function() {\n    with({  }) {\n\nreturn function /*constructor*/(value) {\n        this.value = value;\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f3(__0) {\n  return (function() {\n    with({  }) {\n\nreturn function /*apply*/(func) {\n        throw new Error(\"'apply' is not allowed from inside a cloud-callback. Use 'get' to retrieve the value of this Output directly.\");\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f4() {\n  return (function() {\n    with({  }) {\n\nreturn function /*get*/() {\n        return this.value;\n    };\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0(__0) {\n  return (function() {\n    with({ __awaiter: __f1, aws_sdk_1: require(\"aws-sdk/lib/aws.js\"), handleTodoistEvent: __handleTodoistEvent }) {\n\nreturn (event) =\u003e __awaiter(void 0, void 0, void 0, function* () {\n        var _a;\n        const decoded = Buffer.from((_a = event.body, (_a !== null \u0026\u0026 _a !== void 0 ? _a : \"\")), \"base64\");\n        const raw = JSON.parse(decoded.toString());\n        console.log(\"raw\", raw);\n        // coercing numbers to strings for dynamodb's benefit\n        const data = Object.assign(Object.assign({}, raw), { event_data: Object.assign(Object.assign({}, raw.event_data), { id: raw.event_data.id.toString() }) });\n        console.log(\"data\", data);\n        const sfn = new aws_sdk_1.StepFunctions();\n        const response = yield sfn\n            .startExecution({\n            stateMachineArn: handleTodoistEvent.id.get(),\n            input: JSON.stringify(data),\n        })\n            .promise();\n        console.log(\"sfn response\", response);\n        return {\n            statusCode: 200,\n            body: \"Received.  Thank you.\",\n        };\n    });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n"
+                            },
+                            "node_modules/@types/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "beb46d9cd3062c521690d2110a3b183630f52faacd6bef21b80a8ecd3e89c463",
+                                "path": "node_modules/@types/aws-lambda"
+                            },
+                            "node_modules/@types/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "5e03daa2178046070aad5c9640ffaa43a4c7668acb706aed183d20d41821e38f",
+                                "path": "node_modules/@types/evernote"
+                            },
+                            "node_modules/@types/node": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "c69c771bc5356ca7a08533bc3632c41871e43d332682d5bf433721aa2d392fa6",
+                                "path": "node_modules/@types/node"
+                            },
+                            "node_modules/@types/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "7ab7c7d43df28e38761fd2f9492772af74cfb1e56e27fd31001c60be663e6d69",
+                                "path": "node_modules/@types/oauth"
+                            },
+                            "node_modules/argparse": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "523b331f12c03bae48ff6d85f8147b5a5372144f87438b5c1ac37390b4749747",
+                                "path": "node_modules/argparse"
+                            },
+                            "node_modules/aws-lambda": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "812e38019c033a99d6178a9e853ac0e28451ef3cfcf1e0cdc50225cb050383cf",
+                                "path": "node_modules/aws-lambda"
+                            },
+                            "node_modules/axios": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "cfb520d53ab29840b13be3167818092660465f384f4031d4c26c935df924c7be",
+                                "path": "node_modules/axios"
+                            },
+                            "node_modules/commander": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "4bed5e4788ba43501101cd7a8c8a0f68e65a7b353bfcc969343562e9b71353f9",
+                                "path": "node_modules/commander"
+                            },
+                            "node_modules/debug": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "1367c503d91df28a5214e6dacbc4ef319702e20ceccf59d87bdbfb1ed68bb616",
+                                "path": "node_modules/debug"
+                            },
+                            "node_modules/esprima": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "b95581dd19aa1d0e30b0fe6b9cd472db684221f1836829a5e862bf7ed72c43d3",
+                                "path": "node_modules/esprima"
+                            },
+                            "node_modules/evernote": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "96bf835b54cce9eeb5e03f4a97f0d48f91b5fec193d3345bbb4810d4fcc48dc6",
+                                "path": "node_modules/evernote"
+                            },
+                            "node_modules/follow-redirects": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "3ed92ebcab81082ed984fb50a6f9de109da419ac3bf6e386e678b7731d343deb",
+                                "path": "node_modules/follow-redirects"
+                            },
+                            "node_modules/glob-to-regexp": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "24e9e8b15d09cf8d907c4b03550116d8d08a11d21624f56067d7ee0f229a667a",
+                                "path": "node_modules/glob-to-regexp"
+                            },
+                            "node_modules/graceful-fs": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "75be50af63027639cac993665021de730b97882bd570dca3458c973a4c4d699b",
+                                "path": "node_modules/graceful-fs"
+                            },
+                            "node_modules/js-yaml": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "2747f05e7a8098f769b95a84194a36c3f261edc13ac60d2205a01ebb53dbf256",
+                                "path": "node_modules/js-yaml"
+                            },
+                            "node_modules/ms": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fc40b044c7719b20fb2b15b939bcb9b416cacc9d89e74daa34a56f7da5a4d5a6",
+                                "path": "node_modules/ms"
+                            },
+                            "node_modules/oauth": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "6923b82a1725194f19c6e69f3268695c0fa56e46ec9d8809bec9e220d56d0876",
+                                "path": "node_modules/oauth"
+                            },
+                            "node_modules/sprintf-js": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "fed1665394c8436325892858dcad70239a1aa3d48aa93937aee41222b0a6701e",
+                                "path": "node_modules/sprintf-js"
+                            },
+                            "node_modules/watchpack": {
+                                "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                                "hash": "f1b691b15b77da72709701ce4e8bcc5eeeb87e77db1674ae1bd88f35473b03bc",
+                                "path": "node_modules/watchpack"
+                            }
+                        },
+                        "hash": "3329d864fab9ed6410383cb26878e1a9567a50a6b27174b148e75cb37fb9176d"
+                    },
+                    "deadLetterConfig": null,
+                    "description": "",
+                    "environment": null,
+                    "handler": "__index.handler",
+                    "id": "receive-todoist-event-e3efa9a",
+                    "invokeArn": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:168044948121:function:receive-todoist-event-e3efa9a/invocations",
+                    "kmsKeyArn": "",
+                    "lastModified": "2020-06-15T16:47:19.071+0000",
+                    "layers": [],
+                    "memorySize": 128,
+                    "name": "receive-todoist-event-e3efa9a",
+                    "publish": false,
+                    "qualifiedArn": "arn:aws:lambda:us-west-2:168044948121:function:receive-todoist-event-e3efa9a:$LATEST",
+                    "reservedConcurrentExecutions": -1,
+                    "role": "arn:aws:iam::168044948121:role/api-method-handler-role-1915e63",
+                    "runtime": "nodejs12.x",
+                    "sourceCodeHash": "9j1iS9BUZlY4/sbriMbZHjvFDlFzNpH5166iqCevEJ8=",
+                    "sourceCodeSize": 633841,
+                    "tags": {},
+                    "timeout": 180,
+                    "tracingConfig": {
+                        "mode": "PassThrough"
+                    },
+                    "version": "$LATEST",
+                    "vpcConfig": null
+                },
+                "parent": "urn:pulumi:prod::power::pulumi:pulumi:Stack::power-prod",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "code": null,
+                    "handler": null,
+                    "role": [
+                        "urn:pulumi:prod::power::aws:iam/role:Role::api-method-handler-role"
+                    ],
+                    "runtime": null,
+                    "timeout": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api",
+                "custom": true,
+                "id": "t83iy5rfp6",
+                "type": "aws:apigateway/restApi:RestApi",
+                "inputs": {
+                    "__defaults": ["apiKeySource", "minimumCompressionSize"],
+                    "apiKeySource": "HEADER",
+                    "binaryMediaTypes": ["*/*"],
+                    "body": "{\"swagger\":\"2.0\",\"info\":{\"title\":\"api\",\"version\":\"1.0\"},\"paths\":{\"/todoist-event\":{\"post\":{\"x-amazon-apigateway-integration\":{\"uri\":\"arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:168044948121:function:receive-todoist-event-e3efa9a/invocations\",\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\"}}}},\"x-amazon-apigateway-binary-media-types\":[\"*/*\"],\"x-amazon-apigateway-gateway-responses\":{\"MISSING_AUTHENTICATION_TOKEN\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}},\"ACCESS_DENIED\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}}},\"x-amazon-apigateway-api-key-source\":\"HEADER\"}",
+                    "minimumCompressionSize": -1,
+                    "name": "api"
+                },
+                "outputs": {
+                    "apiKeySource": "HEADER",
+                    "arn": "arn:aws:apigateway:us-west-2::/restapis/t83iy5rfp6",
+                    "binaryMediaTypes": ["*/*"],
+                    "body": "{\"swagger\":\"2.0\",\"info\":{\"title\":\"api\",\"version\":\"1.0\"},\"paths\":{\"/todoist-event\":{\"post\":{\"x-amazon-apigateway-integration\":{\"uri\":\"arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:168044948121:function:receive-todoist-event-e3efa9a/invocations\",\"passthroughBehavior\":\"when_no_match\",\"httpMethod\":\"POST\",\"type\":\"aws_proxy\"}}}},\"x-amazon-apigateway-binary-media-types\":[\"*/*\"],\"x-amazon-apigateway-gateway-responses\":{\"MISSING_AUTHENTICATION_TOKEN\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}},\"ACCESS_DENIED\":{\"statusCode\":404,\"responseTemplates\":{\"application/json\":\"{\\\"message\\\": \\\"404 Not found\\\" }\"}}},\"x-amazon-apigateway-api-key-source\":\"HEADER\"}",
+                    "createdDate": "2020-06-12T22:44:09Z",
+                    "description": "",
+                    "endpointConfiguration": {
+                        "types": "EDGE",
+                        "vpcEndpointIds": []
+                    },
+                    "executionArn": "arn:aws:execute-api:us-west-2:168044948121:t83iy5rfp6",
+                    "id": "t83iy5rfp6",
+                    "minimumCompressionSize": -1,
+                    "name": "api",
+                    "policy": "",
+                    "rootResourceId": "tl7iv63jjb",
+                    "tags": {}
+                },
+                "parent": "urn:pulumi:prod::power::aws:apigateway:x:API::api",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "binaryMediaTypes": null,
+                    "body": [
+                        "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                    ],
+                    "name": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::api",
+                "custom": true,
+                "id": "z5hzb3",
+                "type": "aws:apigateway/deployment:Deployment",
+                "inputs": {
+                    "__defaults": [],
+                    "restApi": "t83iy5rfp6",
+                    "stageName": "",
+                    "variables": {
+                        "__defaults": [],
+                        "version": "5c793b3a"
+                    }
+                },
+                "outputs": {
+                    "createdDate": "2020-06-13T15:44:59Z",
+                    "description": "",
+                    "executionArn": "arn:aws:execute-api:us-west-2:168044948121:t83iy5rfp6/",
+                    "id": "z5hzb3",
+                    "invokeUrl": "https://t83iy5rfp6.execute-api.us-west-2.amazonaws.com/",
+                    "restApi": "t83iy5rfp6",
+                    "variables": {
+                        "version": "5c793b3a"
+                    }
+                },
+                "parent": "urn:pulumi:prod::power::aws:apigateway:x:API::api",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api",
+                    "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "restApi": [
+                        "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api"
+                    ],
+                    "stageName": null,
+                    "variables": [
+                        "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api",
+                        "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:apigateway:x:API$aws:lambda/permission:Permission::api-d408cef9",
+                "custom": true,
+                "id": "api-d408cef9-b3e74cf",
+                "type": "aws:lambda/permission:Permission",
+                "inputs": {
+                    "__defaults": ["statementId"],
+                    "action": "lambda:invokeFunction",
+                    "function": "receive-todoist-event-e3efa9a",
+                    "principal": "apigateway.amazonaws.com",
+                    "sourceArn": "arn:aws:execute-api:us-west-2:168044948121:t83iy5rfp6/*/POST/todoist-event",
+                    "statementId": "api-d408cef9-b3e74cf"
+                },
+                "outputs": {
+                    "action": "lambda:invokeFunction",
+                    "function": "receive-todoist-event-e3efa9a",
+                    "id": "api-d408cef9-b3e74cf",
+                    "principal": "apigateway.amazonaws.com",
+                    "qualifier": "",
+                    "sourceArn": "arn:aws:execute-api:us-west-2:168044948121:t83iy5rfp6/*/POST/todoist-event",
+                    "statementId": "api-d408cef9-b3e74cf"
+                },
+                "parent": "urn:pulumi:prod::power::aws:apigateway:x:API::api",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::api",
+                    "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "action": null,
+                    "function": [
+                        "urn:pulumi:prod::power::aws:lambda/function:Function::receive-todoist-event"
+                    ],
+                    "principal": null,
+                    "sourceArn": [
+                        "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::api"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/stage:Stage::api",
+                "custom": true,
+                "id": "ags-t83iy5rfp6-stage",
+                "type": "aws:apigateway/stage:Stage",
+                "inputs": {
+                    "__defaults": [],
+                    "deployment": "z5hzb3",
+                    "restApi": "t83iy5rfp6",
+                    "stageName": "stage"
+                },
+                "outputs": {
+                    "accessLogSettings": null,
+                    "arn": "arn:aws:apigateway:us-west-2::/restapis/t83iy5rfp6/stages/stage",
+                    "cacheClusterEnabled": false,
+                    "cacheClusterSize": "",
+                    "clientCertificateId": "",
+                    "deployment": "z5hzb3",
+                    "description": "",
+                    "documentationVersion": "",
+                    "executionArn": "arn:aws:execute-api:us-west-2:168044948121:t83iy5rfp6/stage",
+                    "id": "ags-t83iy5rfp6-stage",
+                    "invokeUrl": "https://t83iy5rfp6.execute-api.us-west-2.amazonaws.com/stage",
+                    "restApi": "t83iy5rfp6",
+                    "stageName": "stage",
+                    "tags": {},
+                    "variables": {},
+                    "xrayTracingEnabled": false
+                },
+                "parent": "urn:pulumi:prod::power::aws:apigateway:x:API::api",
+                "dependencies": [
+                    "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::api",
+                    "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api",
+                    "urn:pulumi:prod::power::aws:apigateway:x:API$aws:lambda/permission:Permission::api-d408cef9"
+                ],
+                "provider": "urn:pulumi:prod::power::pulumi:providers:aws::default_2_9_0::499fef72-f969-47d9-a8cb-912fe5970e25",
+                "propertyDependencies": {
+                    "deployment": [
+                        "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/deployment:Deployment::api"
+                    ],
+                    "restApi": [
+                        "urn:pulumi:prod::power::aws:apigateway:x:API$aws:apigateway/restApi:RestApi::api"
+                    ],
+                    "stageName": null
+                }
+            }
+        ]
+    }
+}

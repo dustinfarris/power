@@ -3,3 +3,8 @@ config:
   aws:region: us-west-2
   aws:secretKey:
     secure: AAABABot3/KgkPorrVnM7hPt0T4Fnze121s/4SuCyIeqa+O1lPjMZFtXk+FPpoq5VjX3Om8Bf+0SvgEk8fP8uIms4gUcCsUl
+  power:evernoteShard: s1
+  power:evernoteToken:
+    secure: AAABAMx/0vYFhHXc677Z6p8gRQ9erbTNznWjdOL4nK/KG+7a4x3ee2xLuGu2xq92+aMIih0qwu5UyuIq7lKnn/HnI12v3pi89IJ5o5Bi+SWsHcbGQ7IYC4bVxMlR/HjW9fRiHWaipRwv7YN74qJS/7auvKO25jBXCL4bCjjtN+dx/jWyrFx+
+  power:todoistToken:
+    secure: AAABAAW9cigOTUHqA5ubU2FQ2G3hCFqd25cnPfSZdFmhcYFfJvngkAMgTyicePffYwljYNRfzOZ3iM0XIoaNa3bW3xOLT6yz
