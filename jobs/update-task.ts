@@ -11,7 +11,7 @@ const evernoteUserId = "48611447";
 
 export const lambda = new aws.lambda.CallbackFunction("update-task", {
     callback: async ({ task, note }: { task: Task; note: Note }) => {
-        const response = await axios.post(
+        return await axios.post(
             `https://api.todoist.com/rest/v1/tasks/${task.id}`,
             {
                 content: `[${task.content}](evernote:///view/${evernoteUserId}/s200/${note.guid}/${note.guid}/)`,
@@ -22,7 +22,6 @@ export const lambda = new aws.lambda.CallbackFunction("update-task", {
                 },
             },
         );
-        console.log("todoist response", response);
     },
     environment: {
         variables: {

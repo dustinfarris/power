@@ -5,11 +5,13 @@ import * as db from "../db";
 import * as sfn from "../sfn";
 
 import * as inspectProjectResult from "../jobs/inspect-project-result";
+import * as makeTaskNote from "../jobs/make-task-note";
 import * as createNote from "../jobs/create-note";
 import * as updateTask from "../jobs/update-task";
 
 const handleTodoistEventDefinition = ([
     inspectProjectResultArn,
+    makeTaskNoteLambdaArn,
     createNoteArn,
     updateTaskArn,
     tasksTableName,
@@ -57,20 +59,30 @@ const handleTodoistEventDefinition = ([
                 {
                     Variable: "$.project.TodoistProjectId",
                     StringGreaterThan: "",
-                    Next: "CreateNote",
+                    Next: "MakeTaskNote",
                 },
             ],
             Default: "Skip",
+        },
+        MakeTaskNote: {
+            Type: "Task",
+            Resource: makeTaskNoteLambdaArn,
+            Parameters: {
+                "item.$": "$.event_data",
+            },
+            ResultPath: "$.note",
+            Next: "CreateNote",
         },
         CreateNote: {
             Type: "Task",
             Resource: createNoteArn,
             Parameters: {
-                todoistTask: {
-                    "id.$": "$.event_data.id",
-                    "content.$": "$.event_data.content",
-                    "url.$": "$.event_data.url",
-                },
+                // TODO: convert from markdown
+                "title.$": "$.note.title",
+                "content.$": "$.note.content",
+                // todoist:// scheme doesn't work on mac :(
+                // `todoist://task?id=${todoistTask.id}`;
+                "sourceUrl.$": "$.event_data.url",
                 "notebookGuid.$": "$.project.EvernoteNotebookGuid",
             },
             ResultPath: "$.evernote",
@@ -118,6 +130,7 @@ export const stateMachine = new aws.sfn.StateMachine("handle-todoist-event", {
     definition: pulumi
         .all([
             inspectProjectResult.lambda.arn,
+            makeTaskNote.lambda.arn,
             createNote.lambda.arn,
             updateTask.lambda.arn,
             db.tasksTable.name,

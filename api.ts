@@ -28,7 +28,6 @@ const receiveTodoistEvent = new aws.lambda.CallbackFunction(
         callback: async (event: APIGatewayEvent) => {
             const decoded = Buffer.from(event.body ?? "", "base64");
             const raw = JSON.parse(decoded.toString());
-            console.log("raw", raw);
             // coercing numbers to strings for dynamodb's benefit
             const data = {
                 ...raw,
@@ -46,7 +45,6 @@ const receiveTodoistEvent = new aws.lambda.CallbackFunction(
                     input: JSON.stringify(data),
                 })
                 .promise();
-            console.log("sfn response", response);
             return {
                 statusCode: 200,
                 body: "Received.  Thank you.",

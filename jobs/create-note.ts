@@ -17,29 +17,30 @@ ${content}
 
 export const lambda = new aws.lambda.CallbackFunction("create-note", {
     callback: async ({
-        todoistTask,
+        title,
+        content,
+        sourceUrl,
         notebookGuid,
     }: {
-        todoistTask: Task;
-        notebookGuid: string;
+        title: string;
+        content?: string;
+        sourceUrl?: string;
+        notebookGuid?: string;
     }) => {
         const client = new evernote.Client({
             token: process.env.evernoteToken,
             sandbox: false,
         });
-        console.log("authenticated with evernote");
         const userStore = client.getUserStore();
         const noteStore = client.getNoteStore();
         const note = new evernote.Types.Note();
-        note.title = todoistTask.content;
-        note.content = makeNoteContent();
+        note.title = title;
+        note.content = makeNoteContent(content);
         note.notebookGuid = notebookGuid;
         note.attributes = new evernote.Types.NoteAttributes();
-        note.attributes.sourceApplication = "Todoist";
-        note.attributes.sourceURL = todoistTask.url;
-        console.log("creating note", note.content);
+        note.attributes.sourceApplication = "farris.io";
+        note.attributes.sourceURL = sourceUrl;
         const response = await noteStore.createNote(note);
-        console.log("created note", response);
         return {
             noteGuid: response.guid,
         };
