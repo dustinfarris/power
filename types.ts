@@ -6,6 +6,7 @@ export interface Note {
 export interface Task {
     id: string;
     content: string;
+    parent_id?: string;
     url?: string;
 }
 

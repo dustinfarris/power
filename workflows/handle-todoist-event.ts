@@ -8,10 +8,12 @@ import * as inspectProjectResult from "../jobs/inspect-project-result";
 import * as makeTaskNote from "../jobs/make-task-note";
 import * as createNote from "../jobs/create-note";
 import * as updateTask from "../jobs/update-task";
+import * as makeNoteTagsFromTask from "../jobs/make-note-tags-from-task";
 
 const handleTodoistEventDefinition = ([
     inspectProjectResultArn,
     makeTaskNoteLambdaArn,
+    makeNoteTagsFromTaskLambdaArn,
     createNoteArn,
     updateTaskArn,
     tasksTableName,
@@ -71,6 +73,15 @@ const handleTodoistEventDefinition = ([
                 "item.$": "$.event_data",
             },
             ResultPath: "$.note",
+            Next: "MakeNoteTagsFromTask",
+        },
+        MakeNoteTagsFromTask: {
+            Type: "Task",
+            Resource: makeNoteTagsFromTaskLambdaArn,
+            Parameters: {
+                "item.$": "$.event_data",
+            },
+            ResultPath: "$.tags",
             Next: "CreateNote",
         },
         CreateNote: {
@@ -80,6 +91,7 @@ const handleTodoistEventDefinition = ([
                 // TODO: convert from markdown
                 "title.$": "$.note.title",
                 "content.$": "$.note.content",
+                "tags.$": "$.tags",
                 // todoist:// scheme doesn't work on mac :(
                 // `todoist://task?id=${todoistTask.id}`;
                 "sourceUrl.$": "$.event_data.url",
@@ -115,6 +127,12 @@ const handleTodoistEventDefinition = ([
                     EvernoteNoteGuid: {
                         "S.$": "$.evernote.noteGuid",
                     },
+                    TodoistParentId: {
+                        "S.$": "$.event_data.parent_id",
+                    },
+                    TodoistContent: {
+                        "S.$": "$.event_data.content",
+                    },
                 },
             },
             End: true,
@@ -131,6 +149,7 @@ export const stateMachine = new aws.sfn.StateMachine("handle-todoist-event", {
         .all([
             inspectProjectResult.lambda.arn,
             makeTaskNote.lambda.arn,
+            makeNoteTagsFromTask.lambda.arn,
             createNote.lambda.arn,
             updateTask.lambda.arn,
             db.tasksTable.name,

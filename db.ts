@@ -6,13 +6,8 @@ export const tasksTable = new aws.dynamodb.Table("tasks", {
             name: "TodoistTaskId",
             type: "S",
         },
-        {
-            name: "EvernoteNoteGuid",
-            type: "S",
-        },
     ],
     hashKey: "TodoistTaskId",
-    rangeKey: "EvernoteNoteGuid",
     billingMode: "PAY_PER_REQUEST",
 });
 

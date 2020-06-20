@@ -21,11 +21,13 @@ export const lambda = new aws.lambda.CallbackFunction("create-note", {
         content,
         sourceUrl,
         notebookGuid,
+        tags,
     }: {
         title: string;
         content?: string;
         sourceUrl?: string;
         notebookGuid?: string;
+        tags?: string[];
     }) => {
         const client = new evernote.Client({
             token: process.env.evernoteToken,
@@ -37,6 +39,7 @@ export const lambda = new aws.lambda.CallbackFunction("create-note", {
         note.title = title;
         note.content = makeNoteContent(content);
         note.notebookGuid = notebookGuid;
+        note.tagNames = tags;
         note.attributes = new evernote.Types.NoteAttributes();
         note.attributes.sourceApplication = "farris.io";
         note.attributes.sourceURL = sourceUrl;

@@ -35,6 +35,7 @@ const receiveTodoistEvent = new aws.lambda.CallbackFunction(
                     ...raw.event_data,
                     id: raw.event_data.id.toString(),
                     project_id: raw.event_data.project_id.toString(),
+                    parent_id: (raw.event_data.parent_id ?? "").toString(),
                 },
             };
             console.log("data", data);
