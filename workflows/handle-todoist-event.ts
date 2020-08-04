@@ -5,6 +5,8 @@ import * as db from "../db";
 import * as sfn from "../sfn";
 
 import * as inspectProjectResult from "../jobs/inspect-project-result";
+import * as inspectTaskResult from "../jobs/inspect-task-result";
+import * as testEquality from "../jobs/test-equality";
 import * as makeTaskNote from "../jobs/make-task-note";
 import * as createNote from "../jobs/create-note";
 import * as updateTask from "../jobs/update-task";
@@ -12,6 +14,8 @@ import * as makeNoteTagsFromTask from "../jobs/make-note-tags-from-task";
 
 const handleTodoistEventDefinition = ([
     inspectProjectResultArn,
+    inspectTaskResultLambdaArn,
+    testEqualityLambdaArn,
     makeTaskNoteLambdaArn,
     makeNoteTagsFromTaskLambdaArn,
     createNoteArn,
@@ -25,8 +29,16 @@ const handleTodoistEventDefinition = ([
             Type: "Choice",
             Choices: [
                 {
-                    Variable: "$.event_name",
-                    StringEquals: "item:added",
+                    Or: [
+                        {
+                            Variable: "$.event_name",
+                            StringEquals: "item:added",
+                        },
+                        {
+                            Variable: "$.event_name",
+                            StringEquals: "item:updated",
+                        },
+                    ],
                     Next: "LookupProject",
                 },
             ],
@@ -53,14 +65,60 @@ const handleTodoistEventDefinition = ([
                 "projectLookupResult.$": "$.projectLookupResult",
             },
             ResultPath: "$.project",
-            Next: "ProjectIsConnected",
+            // Next: "CompareTaskSectionToCurrent",
+            Next: "LookupTask",
         },
-        ProjectIsConnected: {
+        // TODO: reenable this if/when Todoist sends item:updated whenever an item is moved into a section
+        // CompareTaskSectionToCurrent: {
+        //     Type: "Task",
+        //     Resource: testEqualityLambdaArn,
+        //     Parameters: {
+        //         "left.$": "$.project.TodoistCurrentSectionId",
+        //         "right.$": "$.event_data.section_id",
+        //     },
+        //     ResultPath: "$.taskSectionEqualsProjectCurrent",
+        //     Next: "TaskIsCurrent",
+        // },
+        // TaskIsCurrent: {
+        //     Type: "Choice",
+        //     Choices: [
+        //         {
+        //             Variable: "$.taskSectionEqualsProjectCurrent",
+        //             BooleanEquals: true,
+        //             Next: "LookupTask",
+        //         },
+        //     ],
+        //     Default: "Skip",
+        // },
+        LookupTask: {
+            Type: "Task",
+            Resource: "arn:aws:states:::dynamodb:getItem",
+            Parameters: {
+                TableName: tasksTableName,
+                Key: {
+                    TodoistTaskId: {
+                        "S.$": "$.event_data.id",
+                    },
+                },
+            },
+            ResultPath: "$.taskLookupResult",
+            Next: "InspectTaskResult",
+        },
+        InspectTaskResult: {
+            Type: "Task",
+            Resource: inspectTaskResultLambdaArn,
+            Parameters: {
+                "taskLookupResult.$": "$.taskLookupResult",
+            },
+            ResultPath: "$.task",
+            Next: "TaskIsNew",
+        },
+        TaskIsNew: {
             Type: "Choice",
             Choices: [
                 {
-                    Variable: "$.project.TodoistProjectId",
-                    StringGreaterThan: "",
+                    Variable: "$.task.TodoistTaskId",
+                    StringEquals: "", // Not found
                     Next: "MakeTaskNote",
                 },
             ],
@@ -148,6 +206,8 @@ export const stateMachine = new aws.sfn.StateMachine("handle-todoist-event", {
     definition: pulumi
         .all([
             inspectProjectResult.lambda.arn,
+            inspectTaskResult.lambda.arn,
+            testEquality.lambda.arn,
             makeTaskNote.lambda.arn,
             makeNoteTagsFromTask.lambda.arn,
             createNote.lambda.arn,

@@ -7,6 +7,7 @@ export const lambda = new aws.lambda.CallbackFunction(
             const item = event?.projectLookupResult?.Item;
             return {
                 TodoistProjectId: item?.TodoistProjectId?.S ?? "",
+                TodoistCurrentSectionId: item?.TodoistCurrentSectionId?.S ?? "",
                 EvernoteNotebookGuid: item?.EvernoteNotebookGuid?.S ?? "",
                 ReportLastGenerated: item?.ReportLastGenerated?.S ?? "",
             };

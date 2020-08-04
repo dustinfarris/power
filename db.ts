@@ -29,6 +29,7 @@ new aws.dynamodb.TableItem("projects-cu", {
     hashKey: projectsTable.hashKey,
     item: JSON.stringify({
         TodoistProjectId: { S: "2198536455" },
+        TodoistCurrentSectionId: { S: "13315598" },
         EvernoteNotebookGuid: { S: "b69ff4d7-2e61-4c7b-a37f-23a4ae4d5784" },
     }),
 });
